@@ -1,27 +1,5 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
-# Dotnet
-http_archive(
-    name = "io_bazel_rules_dotnet",
-    sha256 = "23a6f0bba667aaa3ece439924cfde61c5cf90efd221106d6fbdbe86bdaa7e23d",
-    strip_prefix = "rules_dotnet-4e66bc96bbe13f1d4988d6ea971d8501feee1ccb",
-    url = "https://github.com/bazelbuild/rules_dotnet/archive/4e66bc96bbe13f1d4988d6ea971d8501feee1ccb.zip",
-)
-
-load("@io_bazel_rules_dotnet//dotnet:deps.bzl", "dotnet_repositories")
-
-dotnet_repositories()
-
-load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "dotnet_register_toolchains", "dotnet_repositories_nugets")
-
-dotnet_register_toolchains()
-
-dotnet_repositories_nugets()
-
-load("//:nuget.bzl", "project_dotnet_repositories_nuget")
-
-project_dotnet_repositories_nuget()
-
 # Proto
 http_archive(
     name = "com_google_protobuf",
@@ -53,6 +31,31 @@ rules_proto_dependencies()
 
 rules_proto_toolchains()
 
+load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos = "csharp_repos")
+
+rules_proto_grpc_csharp_repos()
+
+load("@io_bazel_rules_dotnet//dotnet:deps.bzl", "dotnet_repositories")
+load("@com_github_grpc_grpc//bazel:grpc_deps.bzl", "grpc_deps")
+
+grpc_deps()
+
+dotnet_repositories()
+
+load(
+    "@io_bazel_rules_dotnet//dotnet:defs.bzl",
+    "dotnet_register_toolchains",
+    "dotnet_repositories_nugets",
+)
+
+dotnet_register_toolchains()
+
+dotnet_repositories_nugets()
+
 load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_rules_proto_grpc_packages")
 
 nuget_rules_proto_grpc_packages()
+
+load("//nuget:nuget.bzl", "project_dotnet_repositories_nuget")
+
+project_dotnet_repositories_nuget()
