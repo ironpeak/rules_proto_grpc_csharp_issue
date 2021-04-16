@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+import "google/protobuf/descriptor.proto";
+
+package grpc_extensions;
+
+enum Action {
+  Read = 0;
+  Write = 1;
+  Revoke = 2;
+}
+
+message ActionResource {
+  Action action = 1;
+  string resource = 2;
+}
+
+extend google.protobuf.MethodOptions {
+  ActionResource permission = 7150;
+}

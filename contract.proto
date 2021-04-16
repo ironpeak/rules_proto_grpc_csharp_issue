@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package contract;
+
+import "grpc_extensions.proto";
+
+service Example {
+  rpc ExampleFunction (ExampleRequest) returns (ExampleResponse) {
+    option (grpc_extensions.permission) = {
+      action: Write,
+      resource: "example",
+    };
+  }
+}
+
+message ExampleRequest {
+  string msg = 1;
+}
+
+message ExampleResponse {
+  string msg = 1;
+}
