@@ -1,3 +1,4 @@
+using System;
 using Contract;
 
 namespace Example

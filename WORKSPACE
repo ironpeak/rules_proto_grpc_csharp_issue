@@ -1,13 +1,11 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 # Dotnet
-rules_dotnet_version = "4e66bc96bbe13f1d4988d6ea971d8501feee1ccb"
-
 http_archive(
     name = "io_bazel_rules_dotnet",
     sha256 = "23a6f0bba667aaa3ece439924cfde61c5cf90efd221106d6fbdbe86bdaa7e23d",
-    strip_prefix = "rules_dotnet-{}".format(rules_dotnet_version),
-    url = "https://github.com/bazelbuild/rules_dotnet/archive/{}.zip".format(rules_dotnet_version),
+    strip_prefix = "rules_dotnet-4e66bc96bbe13f1d4988d6ea971d8501feee1ccb",
+    url = "https://github.com/bazelbuild/rules_dotnet/archive/4e66bc96bbe13f1d4988d6ea971d8501feee1ccb.zip",
 )
 
 load("@io_bazel_rules_dotnet//dotnet:deps.bzl", "dotnet_repositories")
@@ -27,7 +25,7 @@ project_dotnet_repositories_nuget()
 # Proto
 http_archive(
     name = "com_google_protobuf",
-    # sha256 = "65e020a42bdab44a66664d34421995829e9e79c60e5adaa08282fd14ca552f57",
+    sha256 = "0cbdc9adda01f6d2facc65a22a2be5cecefbefe5a09e5382ee8879b522c04441",
     strip_prefix = "protobuf-3.15.8",
     urls = ["https://github.com/protocolbuffers/protobuf/archive/refs/tags/v3.15.8.tar.gz"],
 )

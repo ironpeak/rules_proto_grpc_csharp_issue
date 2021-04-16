@@ -1,7 +1,2 @@
-build --extra_execution_platforms=@io_bazel_rules_dotnet//dotnet/toolchain:darwin_amd64_5.0.201,@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201
+build --extra_execution_platforms=@local_config_platform//:host,@io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201
 build --host_platform @io_bazel_rules_dotnet//dotnet/toolchain:linux_amd64_5.0.201
-
-common --incompatible_restrict_string_escapes=false
-common --experimental_repository_cache_hardlinks
-
-test --test_env=DATABASE_URL
